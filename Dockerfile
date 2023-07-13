@@ -15,15 +15,12 @@ RUN set -x && apt-get update && \
     apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests nginx-plus \
         nginx-plus-module-xslt nginx-plus-module-geoip nginx-plus-module-image-filter nginx-plus-module-perl nginx-plus-module-njs \
-        app-protect app-protect-attack-signatures app-protect-plugin nginx-plus-module-appprotect app-protect-compiler  app-protect-engine&& \
+        app-protect app-protect-attack-signatures && \
     apt-get remove --purge -y apt-utils && \
     apt-get remove --purge --auto-remove -y && \
     rm -f /etc/apt/sources.list.d/* && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log && \
-    sed -i '1iload_module modules/ngx_http_app_protect_module.so;' /etc/nginx/nginx.conf && \
-    sed -i '/http {/a\    app_protect_enable on;' /etc/nginx/nginx.conf && \
-    cp /opt/app_protect/config/default_config_set.json /opt/app_protect/config/config_set.json
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
 
