@@ -19,7 +19,9 @@ RUN set -x && apt-get update && \
     apt-get remove --purge --auto-remove -y && \
     rm -f /etc/apt/sources.list.d/* && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
+    ln -sf /dev/stderr /var/log/nginx/error.log && \
+    sed -i '1iload_module modules/ngx_http_app_protect_module.so;' nginx.conf && \
+    sed -i '/http {/a\    app_protect_enable on;' /etc/nginx/nginx.conf
 
 EXPOSE 80
 
