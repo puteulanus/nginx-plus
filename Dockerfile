@@ -3,7 +3,8 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN set -x && apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests wget gpg ca-certificates gettext-base curl apt-utils && \
+    apt-get install -y --no-install-recommends --no-install-suggests apt-utils && \
+    apt-get install -y --no-install-recommends --no-install-suggests wget gpg ca-certificates gettext-base curl && \
     echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.puteulanus.com/plus/ubuntu focal nginx-plus" > /etc/apt/sources.list.d/nginx-plus.list && \
     echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://nginx.puteulanus.com/app-protect/ubuntu focal nginx-plus" > /etc/apt/sources.list.d/nginx-app-protect.list && \
     echo "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] https://nginx.puteulanus.com/app-protect-security-updates/ubuntu focal nginx-plus" > /etc/apt/sources.list.d/app-protect-security-updates.list && \
