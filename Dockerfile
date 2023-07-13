@@ -13,8 +13,9 @@ RUN set -x && apt-get update && \
     addgroup --system --gid 101 nginx && \
     adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx && \
     apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests nginx-plus app-protect app-protect-attack-signatures \
-        nginx-plus-module-xslt nginx-plus-module-geoip nginx-plus-module-image-filter nginx-plus-module-perl nginx-plus-module-njs && \
+    apt-get install -y --no-install-recommends --no-install-suggests nginx-plus \
+        nginx-plus-module-xslt nginx-plus-module-geoip nginx-plus-module-image-filter nginx-plus-module-perl nginx-plus-module-njs \
+        app-protect app-protect-attack-signatures app-protect-plugin nginx-plus-module-appprotect app-protect-compiler  app-protect-engine&& \
     apt-get remove --purge -y apt-utils && \
     apt-get remove --purge --auto-remove -y && \
     rm -f /etc/apt/sources.list.d/* && \
